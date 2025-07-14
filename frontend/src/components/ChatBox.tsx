@@ -15,7 +15,7 @@ const ChatBox: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="flex">
       <input
         type="text"
         placeholder="Ask your question..."
