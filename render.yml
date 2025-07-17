@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: rag-langchain-fastapi-backend
+    env: python
+    plan: free
+    buildCommand: |
+      apt-get update && apt-get install -y poppler-utils curl build-essential
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      source $HOME/.cargo/env
+      pip install -r backend/requirements.txt
+    startCommand: uvicorn main:app --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+    rootDir: backend
+    pythonVersion: 3.12.3
