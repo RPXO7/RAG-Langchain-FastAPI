@@ -1,6 +1,15 @@
+// Add the following for Vite environment variable typing
+interface ImportMetaEnv {
+  readonly VITE_API_URL?: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/ask";
+const API_URL = import.meta.env.VITE_API_URL || "/ask";
 
 export interface AskResponse {
   question: string;
